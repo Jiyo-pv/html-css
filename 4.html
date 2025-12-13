@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Play Audio on Button Click</h2>
+
+<audio id="myAudio">
+    <source src="sound.mp3" type="audio/mpeg">
+</audio>
+
+<button onclick="playAudio()">Play</button>
+<button onclick="pauseAudio()">Pause</button>
+
+<script>
+function playAudio() {
+    document.getElementById("myAudio").play();
+}
+
+function pauseAudio() {
+    document.getElementById("myAudio").pause();
+}
+</script>
+
+</body>
+</html>

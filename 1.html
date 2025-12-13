@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>Scroll snap</title>
+    <style>
+        .card {
+            width: 50px;
+            height: 100px;
+            padding: 80px;
+            scroll-snap-align: center;
+            background: lightblue;
+            margin: 15px;
+        }
+        .card:hover
+        {
+            transform: scale(1.8);
+            box-shadow: 12px;
+            border: solid;
+        }
+
+        .container {
+            height: 150px;
+          
+            display: flex;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;   /* FIXED */
+            
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">Snap 1</div>
+        <div class="card">Snap 2</div>
+        <div class="card">Snap 3</div>
+        <div class="card">Snap 4</div>
+        <div class="card">Snap 5</div>
+        <div class="card">Snap 6</div>
+        <div class="card">Snap 7</div>
+        <div class="card">Snap 8</div>
+        <div class="card">Snap 9</div>
+        <div class="card">Snap 10</div>
+    </div>
+
+</body>
+</html>
