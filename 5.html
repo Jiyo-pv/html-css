@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>5 — PDF.js viewer example</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:20px}
+    #controls{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+    canvas{border:1px solid #ddd;max-width:100%;height:auto}
+  </style>
+</head>
+<body>
+  <h1>5 — PDF.js viewer (example)</h1>
+  <p>Default loads a remote sample PDF. Replace the <em>url</em> below with <strong>sample.pdf</strong> to use a local file in this folder.</p>
+
+  <div id="controls">
+    <button id="prev">Previous</button>
+    <button id="next">Next</button>
+    <span>Page: <span id="page-num">1</span>/<span id="page-count">?</span></span>
+    <button id="zoom-out">Zoom −</button>
+    <button id="zoom-in">Zoom +</button>
+  </div>
+
+  <canvas id="pdf-canvas"></canvas>
+
+  <script src="https://unpkg.com/pdfjs-dist@2.16.105/build/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@2.16.105/build/pdf.worker.min.js';
+
+    // Change this to 'sample.pdf' to load a PDF from this folder
+    const url = 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf';
+
+    let pdfDoc = null;
+    let pageNum = 1;
+    let scale = 1.0;
+
+    const canvas = document.getElementById('pdf-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function renderPage(num) {
+      pdfDoc.getPage(num).then(function(page) {
+        const viewport = page.getViewport({ scale });
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        const renderContext = { canvasContext: ctx, viewport };
+        page.render(renderContext);
+        document.getElementById('page-num').textContent = num;
+      });
+    }
+
+    pdfjsLib.getDocument(url).promise.then(function(pdf) {
+      pdfDoc = pdf;
+      document.getElementById('page-count').textContent = pdfDoc.numPages;
+      renderPage(pageNum);
+    }).catch(function(err){
+      document.body.insertAdjacentHTML('beforeend','<p style="color:darkred">Error loading PDF: '+err.message+'</p>');
+    });
+
+    document.getElementById('prev').addEventListener('click', function(){ if(pageNum<=1) return; pageNum--; renderPage(pageNum); });
+    document.getElementById('next').addEventListener('click', function(){ if(pageNum>=pdfDoc.numPages) return; pageNum++; renderPage(pageNum); });
+    document.getElementById('zoom-in').addEventListener('click', function(){ scale += 0.25; renderPage(pageNum); });
+    document.getElementById('zoom-out').addEventListener('click', function(){ if(scale<=0.25) return; scale -= 0.25; renderPage(pageNum); });
+  </script>
+</body>
+</html>
