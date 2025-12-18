@@ -1,25 +1,22 @@
 <html>
     <head>
         <title>
-            check first character upper or lower case using input
+            decimal to binary conversion with input
         </title>
+        
     </head>
     <body>
         <script>
-            function checkCharacterCase(ch) 
-            {
-                let char = ch.charAt(0);
-                if (char >= 'A' && char <= 'Z') {
-                    return "The first character is uppercase.";
-                } else if (char >= 'a' && char <= 'z') {
-                    return "The first character is lowercase.";
-                } else {
-                    return "The first character is not an alphabet letter.";
+            function decimalToBinary(num) {
+                if (isNaN(num) || num < 0 || !Number.isInteger(Number(num))) {
+                    return "Please enter a valid non-negative integer.";
                 }
+                return Number(num).toString(2);
             }
 
-            let inputChar = prompt("Enter a single character:");
-            let result = checkCharacterCase(inputChar);
-            document.write(result);
+            let inputNum = prompt("Enter a non-negative integer:");
+            let binaryResult = decimalToBinary(inputNum);
+            document.write("Binary representation: " + binaryResult);
         </script>
+    </body>
 </html>
