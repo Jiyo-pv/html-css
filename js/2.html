@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>email validation</title>
+    </head>
+    <body>
+        <input type="text" id="a" placeholder="first number">
+      
+        <button onclick="check()">result</button>
+        <p id="result"></p>
+    </body>
+    <script >
+        function check(){
+            a=document.getElementById("a").value;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            document.getElementById("result").innerHTML=emailRegex.test(a);
+        
+
+        }
+    </script>
+</html>

@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>sort array elements</title>
+    </head>
+    <body>
+        <input type="text" id="a" placeholder="enter array elements separated by commas">
+        <button onclick="sortArray()">Sort Array</button>
+        <p id="result"></p>     
+        </body>
+        <script>
+            function sortArray(){
+                let input = document.getElementById("a").value;
+                let arr = input.split(',').map(item => item.trim());
+                arr.sort();
+                document.getElementById("result").innerHTML = arr.join(', ');
+            }
+        </script>
+</html>
