@@ -6,13 +6,15 @@
     </head>
     <body>
         <script>
-            function checkCharacterCase(char) {
+            function checkCharacterCase(ch) 
+            {
+                let char = ch.charAt(0);
                 if (char >= 'A' && char <= 'Z') {
-                    return "The character is uppercase.";
+                    return "The first character is uppercase.";
                 } else if (char >= 'a' && char <= 'z') {
-                    return "The character is lowercase.";
+                    return "The first character is lowercase.";
                 } else {
-                    return "The character is not an alphabet letter.";
+                    return "The first character is not an alphabet letter.";
                 }
             }
 
