@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>
+            check first character upper or lower case using input
+        </title>
+    </head>
+    <body>
+        <script>
+            function checkCharacterCase(char) {
+                if (char >= 'A' && char <= 'Z') {
+                    return "The character is uppercase.";
+                } else if (char >= 'a' && char <= 'z') {
+                    return "The character is lowercase.";
+                } else {
+                    return "The character is not an alphabet letter.";
+                }
+            }
+
+            let inputChar = prompt("Enter a single character:");
+            let result = checkCharacterCase(inputChar);
+            document.write(result);
+        </script>
+</html>
