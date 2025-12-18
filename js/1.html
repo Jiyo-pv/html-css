@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <input type="text" id="a" placeholder="first number">
+        <input type="text" id="b" placeholder="second number">
+        <button onclick="result()">result</button>
+        <p id="result"></p>
+    </body>
+    <script >
+        function result(){
+            a=document.getElementById("a").value;
+            b=document.getElementById("b").value;
+            document.getElementById("result").innerHTML=(a>b)?a:b;
+
+        }
+    </script>
+</html>
