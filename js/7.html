@@ -1,22 +1,13 @@
 <html>
     <head>
-        <title>
-            decimal to binary conversion with input
-        </title>
-        
+        <title>show current date and time separated</title>
     </head>
     <body>
         <script>
-            function decimalToBinary(num) {
-                if (isNaN(num) || num < 0 || !Number.isInteger(Number(num))) {
-                    return "Please enter a valid non-negative integer.";
-                }
-                return Number(num).toString(2);
-            }
-
-            let inputNum = prompt("Enter a non-negative integer:");
-            let binaryResult = decimalToBinary(inputNum);
-            document.write("Binary representation: " + binaryResult);
+            let now = new Date();
+            document.write("Date: " + now.getDate() + "/" + (now.getMonth() + 1) + "/" + now.getFullYear());
+            document.write("<br>");
+            document.write("Time: " + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds());
         </script>
     </body>
 </html>
