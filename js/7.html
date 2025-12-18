@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>
+            decimal to binary conversion with input
+        </title>
+        
+    </head>
+    <body>
+        <script>
+            function decimalToBinary(num) {
+                if (isNaN(num) || num < 0 || !Number.isInteger(Number(num))) {
+                    return "Please enter a valid non-negative integer.";
+                }
+                return Number(num).toString(2);
+            }
+
+            let inputNum = prompt("Enter a non-negative integer:");
+            let binaryResult = decimalToBinary(inputNum);
+            document.write("Binary representation: " + binaryResult);
+        </script>
+    </body>
+</html>
