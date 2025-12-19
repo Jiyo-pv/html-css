@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pyramid in JS/HTML</title>
+</head>
+<body>
+    <h1>Star Pyramid</h1>
+    <label for="rows">Enter number of rows (e.g., 5):</label>
+    <input type="number" id="rows" value="5" min="1">
+    <button onclick="drawPyramid()">Draw</button>
+    <!-- The <pre> tag preserves spacing for perfect alignment -->
+    <pre id="pyramidOutput" style="font-family: monospace; font-size: 1.2em;"></pre>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<script>
+	function drawPyramid() {
+    const totalRows = document.getElementById('rows').value;
+    let pyramidStr = '';
+
+    for (let i = 1; i <= totalRows; i++) {
+        // Add leading spaces: decreases with each row
+        const spaces = ' '.repeat(totalRows - i);
+        // Add characters (*): increases by 2 each row (1, 3, 5, ...)
+        const characters = '*'.repeat(i * 2 - 1);
+        
+        // Concatenate spaces, characters, and a newline for the next row
+        pyramidStr += spaces + characters + '\n';
+    }
+    
+    // Output the final string to the HTML <pre> element
+    document.getElementById('pyramidOutput').textContent = pyramidStr;
+}
+
+// Draw on page load
+window.onload = drawPyramid;
+
+</script>

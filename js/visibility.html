@@ -1,0 +1,16 @@
+<html>
+    <input type="password" id="myInput">
+    <button onclick="showPassword()">Show Password</button>
+    
+    <script>
+    function showPassword() {
+      const inputElement = document.getElementById("myInput");
+      if (inputElement.type === "password") {
+        inputElement.type = "text"; // Change to text to show the password
+      } else {
+        inputElement.type = "password"; // Change back to password to hide it
+      }
+    }
+    </script>
+    
+</html>

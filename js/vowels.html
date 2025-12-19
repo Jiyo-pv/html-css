@@ -1,0 +1,25 @@
+<html>
+<body>
+    <h3>Vowel Counter</h3>
+    <input type="text" id="s" oninput="vowel_count()" placeholder="Type here...">
+    
+    <p>Vowel Count: <span id="res">0</span></p>
+
+    <script>
+    function vowel_count() {
+      var vowel_list = 'aeiouAEIOU';
+      var str1 = document.getElementById("s").value;
+      var vcount = 0;
+
+      for (var x = 0; x < str1.length; x++) {
+        if (vowel_list.indexOf(str1[x]) !== -1) {
+          vcount += 1;
+        }
+      }
+
+      // Use innerHTML for paragraph/span elements
+      document.getElementById("res").innerHTML = vcount;
+    }
+    </script>
+</body>
+</html>

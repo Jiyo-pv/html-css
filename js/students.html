@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student JSON Tracker</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; line-height: 1.6; }
+        .container { max-width: 500px; }
+        input { display: block; width: 100%; margin-bottom: 10px; padding: 8px; }
+        button { padding: 10px 15px; cursor: pointer; background: #28a745; color: white; border: none; }
+        #displayArea { margin-top: 20px; background: #f4f4f4; padding: 15px; border-radius: 5px; }
+        pre { white-space: pre-wrap; word-wrap: break-word; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Add Student Details</h2>
+        <input type="text" id="name" placeholder="Enter Name">
+        <input type="number" id="age" placeholder="Enter Age">
+        <input type="text" id="grade" placeholder="Enter Grade">
+        <button onclick="addStudent()">Add Student & Refresh List</button>
+
+        <div id="displayArea">
+            <h3>Current JSON Data:</h3>
+            <pre id="jsonOutput">[]</pre>
+            
+            <h3>Formatted List:</h3>
+            <ul id="listOutput"></ul>
+        </div>
+    </div>
+
+    <script>
+        // This array will hold our student objects
+        let studentDatabase = [];
+
+        function addStudent() {
+            // 1. Capture the input values
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const grade = document.getElementById('grade').value;
+
+            if(!name || !age || !grade) {
+                alert("Please fill in all fields");
+                return;
+            }
+
+            // 2. Create a new object and push it to our "database"
+            const newStudent = {
+                "name": name,
+                "age": parseInt(age),
+                "grade": grade
+            };
+            studentDatabase.push(newStudent);
+
+            // 3. Clear inputs for next entry
+            document.getElementById('name').value = '';
+            document.getElementById('age').value = '';
+            document.getElementById('grade').value = '';
+
+            // 4. Update the display
+            displayData();
+        }
+
+        function displayData() {
+            const jsonOutput = document.getElementById('jsonOutput');
+            const listOutput = document.getElementById('listOutput');
+
+            // Show raw JSON string
+            jsonOutput.innerText = JSON.stringify(studentDatabase, null, 4);
+
+            // Show as a readable HTML list
+            listOutput.innerHTML = ""; // Clear existing list
+            studentDatabase.forEach(student => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${student.name}</strong> (Age: ${student.age}) - Grade: ${student.grade}`;
+                listOutput.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
